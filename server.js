@@ -9,15 +9,7 @@ const cors = require("cors");
 
 const cors = require("cors");
 
-app.use(cors({
-  origin: [
-    "http://www.lasesmeraldasnono.com.ar",
-    "https://www.lasesmeraldasnono.com.ar",
-    "http://www.lasesmeraldasnono.com.ar/reservas",
-    "https://www.lasesmeraldasnono.com.ar/reservas"
-  ],
-  credentials: true
-}));
+app.use(cors());
 
 app.use(express.json());
 
