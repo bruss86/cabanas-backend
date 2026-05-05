@@ -11,8 +11,31 @@ const app = express();
 const errorHandler = require("./middlewares/errorHandler");
 
 // Middlewares globales
-app.use(cors({ origin: "http://localhost:5173" }));
+const cors = require("cors");
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://www.lasesmeraldasnono.com.ar",
+  "https://lasesmeraldasnono.com.ar"
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // permitir requests sin origin (Postman, mobile apps)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error("No permitido por CORS"));
+  },
+  credentials: true
+}));
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 // Routes
 app.use("/auth", authRoutes);
