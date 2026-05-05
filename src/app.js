@@ -11,8 +11,6 @@ const app = express();
 const errorHandler = require("./middlewares/errorHandler");
 
 // Middlewares globales
-const cors = require("cors");
-
 const allowedOrigins = [
   "http://localhost:5173",
   "https://www.lasesmeraldasnono.com.ar",
